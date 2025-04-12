@@ -1,0 +1,136 @@
+import sys
+import threading
+import os
+import time
+import logging
+import subprocess
+
+# Set up logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler("stt_tray.log"),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger("STT-Tray")
+
+# Attempt to import required packages
+try:
+    import pystray
+    from PIL import Image, ImageDraw
+except ImportError:
+    logger.error("Missing required packages. Installing pystray and pillow...")
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "pystray", "pillow"])
+    import pystray
+    from PIL import Image, ImageDraw
+
+def create_tray_icon():
+    """Create and display a system tray icon for the STT service."""
+    
+    # Path to the main STT script
+    script_dir = os.path.dirname(os.path.realpath(__file__))
+    main_script = os.path.join(script_dir, "voice_activated.py")
+    
+    # Process handle for the STT service
+    stt_process = None
+    
+    # Create a simple icon with visible colors
+    icon_size = 64
+    icon_image = Image.new('RGB', (icon_size, icon_size), color=(240, 240, 240))
+    dc = ImageDraw.Draw(icon_image)
+    
+    # Draw a microphone icon (simplified)
+    center_x, center_y = icon_size // 2, icon_size // 2
+    mic_width, mic_height = 30, 40
+    
+    # Draw mic body
+    dc.rectangle(
+        [(center_x - mic_width//2, center_y - mic_height//2), 
+         (center_x + mic_width//2, center_y + mic_height//2)],
+        fill=(30, 144, 255),  # Dodger blue
+        outline=(0, 0, 0),
+        width=2
+    )
+    
+    # Draw mic top curve
+    dc.ellipse(
+        [(center_x - mic_width//2, center_y - mic_height//2 - 5),
+         (center_x + mic_width//2, center_y - mic_height//2 + 10)],
+        fill=(30, 144, 255),
+        outline=(0, 0, 0),
+        width=2
+    )
+    
+    # Define menu item functions
+    def start_service():
+        nonlocal stt_process
+        logger.info("Starting STT service...")
+        
+        if stt_process is not None and stt_process.poll() is None:
+            logger.info("Service is already running")
+            return
+        
+        try:
+            # Start the STT service as a subprocess
+            stt_process = subprocess.Popen(
+                [sys.executable, main_script],
+                creationflags=subprocess.CREATE_NO_WINDOW if hasattr(subprocess, 'CREATE_NO_WINDOW') else 0
+            )
+            logger.info(f"STT service started with PID {stt_process.pid}")
+            
+            # Update icon tooltip
+            icon.title = "STT Service (Running)"
+        except Exception as e:
+            logger.error(f"Error starting service: {e}")
+    
+    def stop_service():
+        nonlocal stt_process
+        logger.info("Stopping STT service...")
+        
+        if stt_process is not None and stt_process.poll() is None:
+            try:
+                # Try to terminate gracefully
+                stt_process.terminate()
+                time.sleep(1)
+                
+                # Force kill if still running
+                if stt_process.poll() is None:
+                    stt_process.kill()
+                
+                logger.info("STT service stopped")
+                
+                # Update icon tooltip
+                icon.title = "STT Service (Stopped)"
+            except Exception as e:
+                logger.error(f"Error stopping service: {e}")
+        else:
+            logger.info("Service is not running")
+    
+    def exit_app():
+        logger.info("Exiting...")
+        stop_service()
+        icon.stop()
+    
+    # Create the icon with tooltip
+    icon = pystray.Icon(
+        "stt_tray",
+        icon=icon_image,
+        title="STT Service",  # Tooltip text
+        menu=pystray.Menu(
+            pystray.MenuItem("Start Service", start_service),
+            pystray.MenuItem("Stop Service", stop_service),
+            pystray.MenuItem("Exit", exit_app)
+        )
+    )
+    
+    # Start the service automatically when tray icon starts
+    start_service()
+    
+    # Run the icon (blocking call)
+    logger.info("System tray icon starting...")
+    icon.run()
+
+if __name__ == "__main__":
+    create_tray_icon()

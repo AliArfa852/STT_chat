@@ -1,0 +1,159 @@
+#!/usr/bin/env python3
+"""
+Microphone test with device selection
+Tests audio input from a specific device
+"""
+
+import pyaudio
+import wave
+import os
+import time
+import sys
+
+def test_microphone_with_device():
+    print("Microphone Test with Device Selection")
+    print("====================================")
+    
+    # Print available audio devices
+    p = pyaudio.PyAudio()
+    info = p.get_host_api_info_by_index(0)
+    numdevices = info.get('deviceCount')
+    
+    print("\nAvailable audio input devices:")
+    input_devices = []
+    
+    for i in range(0, numdevices):
+        device_info = p.get_device_info_by_host_api_device_index(0, i)
+        if device_info.get('maxInputChannels') > 0:
+            input_devices.append((i, device_info.get('name')))
+            print(f"  - Device {i}: {device_info.get('name')}")
+    
+    if not input_devices:
+        print("No input devices found!")
+        return
+    
+    # Ask user to select a device
+    selected_device = None
+    while selected_device is None:
+        try:
+            device_input = input("\nEnter the device number to test (or 'q' to quit): ")
+            if device_input.lower() == 'q':
+                return
+                
+            device_num = int(device_input)
+            if any(id == device_num for id, _ in input_devices):
+                selected_device = device_num
+            else:
+                print("Invalid device number, try again.")
+        except ValueError:
+            print("Please enter a valid number.")
+    
+    # Get device name
+    device_name = next(name for id, name in input_devices if id == selected_device)
+    print(f"\nTesting device {selected_device}: {device_name}")
+    
+    # Verify device can be opened
+    try:
+        test_stream = p.open(
+            format=pyaudio.paInt16,
+            channels=1,
+            rate=16000,
+            input=True,
+            input_device_index=selected_device,
+            frames_per_buffer=1024
+        )
+        test_stream.close()
+        print("Device opened successfully.")
+    except Exception as e:
+        print(f"Error opening device: {e}")
+        print("Please try a different device.")
+        p.terminate()
+        return
+    
+    # Record audio
+    print("\nRecording 5 seconds of audio...")
+    print("Please speak into your microphone")
+    
+    # Set recording parameters
+    FORMAT = pyaudio.paInt16
+    CHANNELS = 1
+    RATE = 16000
+    CHUNK = 1024
+    RECORD_SECONDS = 5
+    WAVE_OUTPUT_FILENAME = f"microphone_test_device_{selected_device}.wav"
+    
+    stream = p.open(format=FORMAT,
+                    channels=CHANNELS,
+                    rate=RATE,
+                    input=True,
+                    input_device_index=selected_device,
+                    frames_per_buffer=CHUNK)
+    
+    # Countdown
+    for i in range(3, 0, -1):
+        print(f"{i}...")
+        time.sleep(1)
+    
+    print("Recording...")
+    
+    frames = []
+    
+    for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
+        data = stream.read(CHUNK, exception_on_overflow=False)
+        frames.append(data)
+        # Show recording progress
+        if i % 10 == 0:
+            sys.stdout.write('.')
+            sys.stdout.flush()
+    
+    print("\nDone recording!")
+    
+    # Stop recording
+    stream.stop_stream()
+    stream.close()
+    
+    # Save recording
+    wf = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
+    wf.setnchannels(CHANNELS)
+    wf.setsampwidth(p.get_sample_size(FORMAT))
+    wf.setframerate(RATE)
+    wf.writeframes(b''.join(frames))
+    wf.close()
+    
+    p.terminate()
+    
+    print(f"\nAudio saved to {WAVE_OUTPUT_FILENAME}")
+    print("If you can hear your voice when playing this file, your microphone is working correctly.")
+    
+    # Calculate audio levels to detect if microphone is capturing sound
+    max_amplitude = 0
+    for frame in frames:
+        # Convert bytes to integers and find max value
+        for i in range(0, len(frame), 2):
+            if i+1 < len(frame):
+                value = int.from_bytes(frame[i:i+2], byteorder='little', signed=True)
+                max_amplitude = max(max_amplitude, abs(value))
+    
+    max_percent = (max_amplitude / 32768) * 100  # 16-bit audio max value is 32768
+    
+    print(f"\nMax audio level: {max_percent:.1f}% of maximum")
+    
+    if max_percent < 1:
+        print("WARNING: Audio level is very low. Your microphone might not be working correctly.")
+        print("Check that your microphone is enabled in Windows settings.")
+        print("  1. Right-click the speaker icon in taskbar")
+        print("  2. Select 'Open Sound settings'")
+        print("  3. Under Input, make sure the correct microphone is selected")
+        print("  4. Check that the microphone isn't muted and volume is up")
+    elif max_percent < 5:
+        print("NOTICE: Audio level is low. Try speaking louder or adjusting your microphone settings.")
+    else:
+        print("Audio levels look good!")
+    
+    # Ask to test another device
+    another = input("\nTest another device? (y/n): ")
+    if another.lower() == 'y':
+        test_microphone_with_device()
+
+if __name__ == "__main__":
+    test_microphone_with_device()

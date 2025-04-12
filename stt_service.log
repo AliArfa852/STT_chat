@@ -1,0 +1,103 @@
+2025-04-12 14:29:34,861 - STT-Service - INFO - Installing pywin32...
+2025-04-12 14:29:48,139 - STT-Service - INFO - Installing pystray...
+2025-04-12 14:40:43,159 - STT-Service - INFO - Installing pywin32...
+2025-04-12 14:47:08,060 - STT-Service - INFO - INSTALLED: PyAudio
+2025-04-12 14:47:08,182 - STT-Service - INFO - INSTALLED: numpy
+2025-04-12 14:47:08,554 - STT-Service - INFO - INSTALLED: sounddevice
+2025-04-12 14:47:08,947 - STT-Service - INFO - INSTALLED: vosk
+2025-04-12 14:47:09,047 - STT-Service - INFO - INSTALLED: webrtcvad
+2025-04-12 14:47:09,048 - STT-Service - INFO - Installing pywin32...
+2025-04-12 14:47:10,208 - STT-Service - INFO - INSTALLED: pystray
+2025-04-12 14:51:05,053 - STT-Service - INFO - Starting STT background service
+2025-04-12 14:51:05,055 - STT-Service - INFO - Transcripts will be saved to: C:\Users\aliar/stt_transcripts
+2025-04-12 14:51:05,056 - STT-Service - INFO - Listening for keywords: hey computer, wake up, listen, start
+2025-04-12 14:51:05,097 - STT-Service - INFO - Starting system tray icon...
+2025-04-12 14:51:05,098 - STT-Service - INFO - System tray icon should now be visible
+2025-04-12 14:52:30,125 - STT-Service - INFO - Received signal 2, shutting down
+2025-04-12 14:52:30,126 - STT-Service - INFO - Stopping STT background service
+2025-04-12 14:52:30,460 - STT-Service - INFO - STT service stopped
+2025-04-12 14:52:31,046 - STT-Service - INFO - STT service stopped
+2025-04-12 14:53:31,118 - STT-Service - INFO - Starting STT background service
+2025-04-12 14:53:31,118 - STT-Service - INFO - Transcripts will be saved to: C:\Users\aliar/stt_transcripts
+2025-04-12 14:53:31,119 - STT-Service - INFO - Listening for keywords: hey computer, wake up, listen, start
+2025-04-12 14:53:31,148 - STT-Service - INFO - Starting system tray icon...
+2025-04-12 14:53:31,148 - STT-Service - INFO - System tray icon should now be visible
+2025-04-12 14:54:03,196 - STT-Service - INFO - Service paused
+2025-04-12 14:54:08,647 - STT-Service - INFO - Service resumed
+2025-04-12 14:54:34,206 - STT-Service - INFO - Received signal 2, shutting down
+2025-04-12 14:54:34,207 - STT-Service - INFO - Stopping STT background service
+2025-04-12 14:54:34,550 - STT-Service - INFO - STT service stopped
+2025-04-12 14:54:34,921 - STT-Service - INFO - STT service stopped
+2025-04-12 14:58:27,914 - STT-Service - INFO - Starting STT background service
+2025-04-12 14:58:27,914 - STT-Service - INFO - Transcripts will be saved to: C:\Users\aliar/stt_transcripts
+2025-04-12 14:58:27,915 - STT-Service - INFO - Listening for keywords: hey computer, wake up, listen, start
+2025-04-12 14:58:27,950 - STT-Service - INFO - Starting system tray icon...
+2025-04-12 14:58:27,951 - STT-Service - INFO - System tray icon should now be visible
+2025-04-12 15:00:25,203 - STT-Service - INFO - Received signal 2, shutting down
+2025-04-12 15:00:25,203 - STT-Service - INFO - Stopping STT background service
+2025-04-12 15:00:25,538 - STT-Service - INFO - STT service stopped
+2025-04-12 15:00:26,305 - STT-Service - INFO - STT service stopped
+2025-04-12 15:02:41,343 - STT-Service - INFO - Starting STT background service
+2025-04-12 15:02:41,344 - STT-Service - INFO - Transcripts will be saved to: C:\Users\aliar/stt_transcripts
+2025-04-12 15:02:41,344 - STT-Service - INFO - Listening for keywords: hey computer, wake up, listen, start
+2025-04-12 15:02:41,378 - STT-Service - INFO - Starting system tray icon...
+2025-04-12 15:02:41,380 - STT-Service - INFO - System tray icon should now be visible
+2025-04-12 15:03:28,589 - STT-Service - INFO - Received signal 2, shutting down
+2025-04-12 15:03:28,591 - STT-Service - INFO - Stopping STT background service
+2025-04-12 15:03:28,920 - STT-Service - INFO - STT service stopped
+2025-04-12 15:03:29,123 - STT-Service - INFO - STT service stopped
+2025-04-12 15:04:04,256 - STT-Service - INFO - Starting STT background service
+2025-04-12 15:04:04,257 - STT-Service - INFO - Transcripts will be saved to: C:\Users\aliar/stt_transcripts
+2025-04-12 15:04:04,257 - STT-Service - INFO - Listening for keywords: hey computer, wake up, listen, start
+2025-04-12 15:04:04,293 - STT-Service - INFO - Starting system tray icon...
+2025-04-12 15:04:04,294 - STT-Service - INFO - System tray icon should now be visible
+2025-04-12 15:04:06,570 - STT-Service - INFO - Received signal 2, shutting down
+2025-04-12 15:04:06,570 - STT-Service - INFO - Stopping STT background service
+2025-04-12 15:04:06,898 - STT-Service - INFO - STT service stopped
+2025-04-12 15:04:07,526 - STT-Service - INFO - STT service stopped
+2025-04-12 15:06:26,003 - STT-Service - INFO - Starting STT background service
+2025-04-12 15:06:26,003 - STT-Service - INFO - Transcripts will be saved to: C:\Users\aliar/stt_transcripts
+2025-04-12 15:06:26,004 - STT-Service - INFO - Listening for keywords: hey computer, wake up, listen, start
+2025-04-12 15:06:26,034 - STT-Service - INFO - Starting system tray icon...
+2025-04-12 15:06:26,035 - STT-Service - INFO - System tray icon should now be visible
+2025-04-12 15:09:43,595 - STT-Service - INFO - Received signal 2, shutting down
+2025-04-12 15:09:43,595 - STT-Service - INFO - Stopping STT background service
+2025-04-12 15:09:43,920 - STT-Service - INFO - STT service stopped
+2025-04-12 15:09:44,188 - STT-Service - INFO - STT service stopped
+2025-04-12 15:19:28,047 - STT-Service - INFO - Starting STT background service
+2025-04-12 15:19:28,048 - STT-Service - INFO - Transcripts will be saved to: C:\Users\aliar/stt_transcripts
+2025-04-12 15:19:28,048 - STT-Service - INFO - Listening for keywords: hey computer, wake up, listen, start
+2025-04-12 15:19:28,080 - STT-Service - INFO - Starting system tray icon...
+2025-04-12 15:19:28,081 - STT-Service - INFO - System tray icon should now be visible
+2025-04-12 15:19:52,443 - STT-Service - INFO - Received signal 2, shutting down
+2025-04-12 15:19:52,445 - STT-Service - INFO - Stopping STT background service
+2025-04-12 15:19:52,675 - STT-Service - INFO - STT service stopped
+2025-04-12 15:19:53,524 - STT-Service - INFO - STT service stopped
+2025-04-12 15:27:47,341 - STT-Service - INFO - Starting STT background service
+2025-04-12 15:27:47,342 - STT-Service - INFO - Transcripts will be saved to: C:\Users\aliar/stt_transcripts
+2025-04-12 15:27:47,343 - STT-Service - INFO - Listening for keywords: hey computer, wake up, listen, start
+2025-04-12 15:27:47,367 - STT-Service - INFO - Starting system tray icon...
+2025-04-12 15:27:47,369 - STT-Service - INFO - System tray icon should now be visible
+2025-04-12 15:27:53,636 - STT-Service - INFO - Heard: 'chart'
+2025-04-12 15:28:01,637 - STT-Service - INFO - Heard: 'dart'
+2025-04-12 15:28:05,643 - STT-Service - INFO - Heard: 'listen'
+2025-04-12 15:28:05,643 - STT-Service - INFO - Keyword detected: 'listen' in 'listen'
+2025-04-12 15:28:06,428 - STT-Service - INFO - Listening...
+2025-04-12 15:28:10,239 - STT-Service - INFO - Transcribed: what is happening around me
+2025-04-12 15:28:12,304 - STT-Service - INFO - Heard: 'what can you do'
+2025-04-12 15:28:16,799 - STT-Service - INFO - Heard: 'what is happening'
+2025-04-12 15:28:20,301 - STT-Service - INFO - Heard: 'start'
+2025-04-12 15:28:20,302 - STT-Service - INFO - Keyword detected: 'start' in 'start'
+2025-04-12 15:28:21,054 - STT-Service - INFO - Listening...
+2025-04-12 15:28:24,872 - STT-Service - INFO - Transcribed: and who
+2025-04-12 15:28:28,407 - STT-Service - INFO - Heard: 'hello'
+2025-04-12 15:28:33,412 - STT-Service - INFO - Heard: 'what is this'
+2025-04-12 15:28:37,440 - STT-Service - INFO - Heard: 'how can you help me'
+2025-04-12 15:28:41,420 - STT-Service - INFO - Heard: 'stop'
+2025-04-12 15:29:01,913 - STT-Service - INFO - Heard: 'huh'
+2025-04-12 15:29:21,918 - STT-Service - INFO - Heard: 'huh'
+2025-04-12 15:29:41,930 - STT-Service - INFO - Heard: 'huh'
+2025-04-12 15:30:02,411 - STT-Service - INFO - Heard: 'huh'
+2025-04-12 15:30:22,419 - STT-Service - INFO - Heard: 'huh'
+2025-04-12 15:30:42,420 - STT-Service - INFO - Heard: 'huh'
+2025-04-12 15:31:02,915 - STT-Service - INFO - Heard: 'huh'
